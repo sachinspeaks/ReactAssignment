@@ -1,9 +1,8 @@
 import { ActionTypes } from "../constants/action-types"
 export const SetUsers=(users)=>{
-    return {
-        type:ActionTypes.Set_Users,
-        payload:users
-    }
+    console.log(users,"useraction user")
+    return({type:ActionTypes.Set_Users,
+        payload:users} )
 }
 export const SelectedUsers=(users)=>{
     return {

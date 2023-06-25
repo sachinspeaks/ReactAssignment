@@ -2,8 +2,7 @@ import {combineReducers} from 'redux'
 import {userReducer,selectedUserReducer} from './userreducer'
 
 const reducers=combineReducers({
-    allproducts:userReducer,
-    user:selectedUserReducer
+    allproducts:userReducer
 })
 
 export default reducers;

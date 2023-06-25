@@ -1,32 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { SelectedUsers } from '../redux/actions/Useractions'
-import axios from 'axios'
 
 export default function UserDetails() {
-  const { productId } = useParams()
-  const curruser = useSelector((state) => state.allproducts.users.data)
-  const {id,first_name,last_name,avatar,email}=curruser
-  console.log("id ", productId)
-  const dispatch = useDispatch();
-  const fetchUserDetail = async () => {
-    const response = await axios.get(`https://reqres.in/api/users/${productId}`).catch((err) => console.log(err));
-    console.log(response.data," single")
-    dispatch(SelectedUsers(response.data))
-  }
-  useEffect(() => {
-    if (productId && productId !== "") fetchUserDetail()
-  }, [productId])
+  const ans=useSelector((state)=>state.allproducts.users)
+  console.log(ans,"aergag")
+  const { userid } = useParams()
+  const {first_name,last_name,avatar,id,email}=ans[userid-1];
 
   return (
-    <div class="card" style={{width: "20rem"}}>
-      <img src={avatar} class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p class="card-text">ID : {id}</p>
-          <p class="card-text">Name : {`${first_name} ${last_name}`}</p>
-          <p class="card-text">Email : {email}</p>
+    <div className="card my-5 mx-5" style={{width: "20rem"}}>
+      <img src={avatar} className="card-img-top" alt="..."/>
+        <div className="card-body">
+          <p className="card-text">ID : {id}</p>
+          <p className="card-text">Name : {`${first_name} ${last_name}`}</p>
+          <p className="card-text">Email : {email}</p>
         </div>
     </div>
   )
